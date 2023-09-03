@@ -26,5 +26,13 @@ describe('Operaciones CRUD de cafes', () => {
   });
 
   // 3. Prueba que la ruta POST /cafes agrega un nuevo café y devuelve un código 201. (2 Puntos)
+
+  it('Ruta POST /cafes agrega nuevo café y devuelve código 201', async () => {
+    const cafePrueba = { id: 26, nombre: 'Café de Prueba' };
+    const response = await request(server).post('/cafes').send(cafePrueba);
+    const respStatusCode = response.statusCode;
+    expect(respStatusCode).toBe(201);
+  });
+
   // 4. Prueba que la ruta PUT /cafes devuelve un status code 400 si intentas actualizar un café enviando un id en los parámetros que sea diferente al id dentro del payload. (3 Puntos)
 });
