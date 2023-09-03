@@ -35,4 +35,13 @@ describe('Operaciones CRUD de cafes', () => {
   });
 
   // 4. Prueba que la ruta PUT /cafes devuelve un status code 400 si intentas actualizar un café enviando un id en los parámetros que sea diferente al id dentro del payload. (3 Puntos)
+
+  it('Ruta PUT /cafes devuelve código 400 al enviar id en params distinto a id en payload', async () => {
+    const cafeModificado = { id: 2, nombre: 'Americano' };
+    const response = await request(server)
+      .put('/cafes/26')
+      .send(cafeModificado);
+    const respStatusCode = response.statusCode;
+    expect(respStatusCode).toBe(400);
+  });
 });
