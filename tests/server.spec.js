@@ -14,6 +14,17 @@ describe('Operaciones CRUD de cafes', () => {
   });
 
   // 2. Comprueba que se obtiene un código 404 al intentar eliminar un café con un id que no existe. (2 Puntos)
+
+  it('Entrega código 404 al eliminar un café con id inexistente', async () => {
+    const jwt = 'token';
+    const response = await request(server)
+      .delete('/cafes/26')
+      .set('authorization', jwt)
+      .send();
+    const respStatusCode = response.statusCode;
+    expect(respStatusCode).toBe(404);
+  });
+
   // 3. Prueba que la ruta POST /cafes agrega un nuevo café y devuelve un código 201. (2 Puntos)
   // 4. Prueba que la ruta PUT /cafes devuelve un status code 400 si intentas actualizar un café enviando un id en los parámetros que sea diferente al id dentro del payload. (3 Puntos)
 });
